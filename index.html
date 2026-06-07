@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Meme</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:black;
+    overflow:hidden;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, sans-serif;
+}
+
+/* ========================= */
+/* TOP MOVING TEXT */
+/* ========================= */
+
+.marquee{
+    position:absolute;
+    top:30px;
+    width:100%;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.marquee-content{
+    display:inline-block;
+    animation:scroll 12s linear infinite;
+}
+
+.marquee-content span{
+    color:rgba(211, 214, 29, 0.873);
+    font-size:36px;
+    font-weight:bold;
+    margin-right:120px;
+    text-shadow:0 0 15px rgb(47, 42, 4);
+}
+
+@keyframes scroll{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+/* ========================= */
+/* CENTER SECTION */
+/* ========================= */
+
+.center-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    animation:float 3s ease-in-out infinite;
+}
+
+.center-image{
+    width:320px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgb(255,255,255);
+}
+
+.center-text{
+    margin-top:18px;
+    color:yellow;
+    font-size:34px;
+    font-weight:bold;
+    text-shadow:0 0 15px yellow;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-25px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+/* ========================= */
+/* SIDE VIDEOS */
+/* ========================= */
+
+.side-video{
+    position:absolute;
+    width:260px;
+    height:460px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 0 25px rgb(255,255,255);
+}
+
+.left-video{
+    left:40px;
+}
+
+.right-video{
+    right:40px;
+}
+
+/* ========================= */
+/* BOTTOM BAR */
+/* ========================= */
+
+.bottom-marquee{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.bottom-track{
+    display:inline-flex;
+    align-items:center;
+    animation:bottomScroll 18s linear infinite;
+}
+
+.bottom-text{
+    color:white;
+    font-size:22px;
+    margin-right:40px;
+    text-shadow:0 0 10px white;
+}
+
+.bottom-track img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-right:18px;
+    box-shadow:0 0 12px white;
+}
+
+@keyframes bottomScroll{
+
+    from{
+        transform:translateX(70%);
+    }
+
+    to{
+        transform:translateX(-100%);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- TOP MOVING TEXT -->
+<!-- ========================= -->
+
+<div class="marquee">
+
+    <div class="marquee-content">
+
+        <span>
+        Padha kro yaar yese leak ke piche kahi ek din tum leak na ho jao
+        </span>
+
+        <span>
+        Padha kro yaar yese leak ke piche kahi ek din tum leak na ho jao
+        </span>
+
+        <span>
+        Padha kro yaar yese leak ke piche kahi ek din tum leak na ho jao
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- LEFT VIDEO -->
+<!-- ========================= -->
+
+<video class="side-video left-video" autoplay muted loop playsinline>
+    <source src="left.mp4" type="video/mp4">
+</video>
+
+
+<!-- ========================= -->
+<!-- CENTER IMAGE + TEXT -->
+<!-- ========================= -->
+
+<div class="center-box">
+
+    <img src="image.jpg" class="center-image">
+
+    <div class="center-text">
+        itna acha collge mila hai
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- RIGHT VIDEO -->
+<!-- ========================= -->
+
+<video class="side-video right-video" autoplay muted loop playsinline>
+    <source src="right.mp4" type="video/mp4">
+</video>
+
+
+<!-- ========================= -->
+<!-- AUDIO -->
+<!-- ========================= -->
+
+<audio id="bgmusic" autoplay loop>
+    <source src="audio.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- ========================= -->
+<!-- BOTTOM MOVING BAR -->
+<!-- ========================= -->
+
+<div class="bottom-marquee">
+
+    <div class="bottom-track">
+
+        <span class="bottom-text">
+            humara ek horror physcholgical game ' Track 17 ' arha hai jaldi jo humare college ke upar dpendent rhega  , so stay tunned       
+        </span>
+
+        <img src="img1.png">
+        <img src="img2.png">
+        <img src="img3.png">
+        <img src="img4.png">
+        <img src="img5.png">
+        <img src="img6.png">
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- AUDIO AUTOPLAY FIX -->
+<!-- ========================= -->
+
+<script>
+
+window.onload = function(){
+
+    let audio = document.getElementById("bgmusic");
+
+    audio.play().catch(() => {
+
+        console.log("Autoplay blocked by browser");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
